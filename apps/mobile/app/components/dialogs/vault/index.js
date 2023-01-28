@@ -687,7 +687,7 @@ export class VaultDialog extends Component {
             ...getElevation(5),
             width: DDS.isTab ? 350 : "85%",
             borderRadius: 10,
-            backgroundColor: colors.bg,
+            backgroundColor: colors.primary.background,
             paddingTop: 12
           }}
         >

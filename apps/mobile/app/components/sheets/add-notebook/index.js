@@ -395,7 +395,7 @@ export class AddNotebookSheet extends React.Component {
                 refs[this.prevIndex].setNativeProps({
                   text: value,
                   style: {
-                    borderBottomColor: colors.accent
+                    borderBottomColor: colors.primary.accent
                   }
                 });
               }
@@ -410,7 +410,7 @@ export class AddNotebookSheet extends React.Component {
               testID: "topic-add-button",
               icon: this.state.editTopic ? "check" : "plus",
               onPress: this.onSubmit,
-              color: topicInputFocused ? colors.accent : colors.icon
+              color: topicInputFocused ? colors.primary.accent : colors.primary.icon
             }}
             placeholder="Add a topic"
           />
@@ -485,7 +485,7 @@ const TopicItem = ({ item, index, colors, onPress, onDelete }) => {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        backgroundColor: colors.nav,
+        backgroundColor: colors.secondary.background,
         borderRadius: 5,
         marginVertical: 5
       }}
@@ -508,11 +508,11 @@ const TopicItem = ({ item, index, colors, onPress, onDelete }) => {
         style={[
           styles.topicInput,
           {
-            color: colors.pri
+            color: colors.primary.paragraph
           }
         ]}
         defaultValue={item}
-        placeholderTextColor={colors.placeholder}
+        placeholderTextColor={colors.primary.placeholder}
       />
 
       <View
@@ -531,7 +531,7 @@ const TopicItem = ({ item, index, colors, onPress, onDelete }) => {
           }}
           name="pencil"
           size={SIZE.lg - 5}
-          color={colors.icon}
+          color={colors.primary.icon}
         />
         <IconButton
           onPress={() => {
@@ -539,7 +539,7 @@ const TopicItem = ({ item, index, colors, onPress, onDelete }) => {
           }}
           name="minus"
           size={SIZE.lg}
-          color={colors.icon}
+          color={colors.primary.icon}
         />
       </View>
     </View>

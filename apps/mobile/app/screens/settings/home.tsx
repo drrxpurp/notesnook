@@ -32,7 +32,7 @@ import {
   eUnSubscribeEvent
 } from "../../services/event-manager";
 import useNavigationStore from "../../stores/use-navigation-store";
-import { useThemeStore } from "../../stores/use-theme-store";
+import { useThemeColors } from "@notesnook/theme";
 import { SIZE } from "../../utils/size";
 import { SectionGroup } from "./section-group";
 import { settingsGroups } from "./settings-data";
@@ -43,7 +43,7 @@ const keyExtractor = (item: SettingSection) => item.id;
 const Home = ({
   navigation
 }: NativeStackScreenProps<RouteParams, "SettingsHome">) => {
-  const colors = useThemeStore((state) => state.colors);
+  const colors = useThemeColors();
   const [loading, setLoading] = useState(false);
 
   useNavigationFocus(navigation, {
@@ -83,15 +83,15 @@ const Home = ({
               style={{
                 width: "100%",
                 height: "100%",
-                backgroundColor: colors.bg,
+                backgroundColor: colors.primary.background,
                 justifyContent: "center",
                 alignItems: "center"
               }}
             >
-              <Heading color={colors.pri} size={SIZE.lg}>
+              <Heading color={colors.primary.paragraph} size={SIZE.lg}>
                 Logging out
               </Heading>
-              <Paragraph color={colors.icon}>
+              <Paragraph color={colors.secondary.paragraph}>
                 Please wait while we log out and clear app data.
               </Paragraph>
               <View
@@ -108,8 +108,8 @@ const Home = ({
                   useNativeDriver
                   indeterminate
                   indeterminateAnimationDuration={2000}
-                  unfilledColor={colors.nav}
-                  color={colors.accent}
+                  unfilledColor={colors.secondary.background}
+                  color={colors.primary.accent}
                   borderWidth={0}
                 />
               </View>

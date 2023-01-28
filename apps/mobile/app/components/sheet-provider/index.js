@@ -25,7 +25,7 @@ import {
   eSubscribeEvent,
   eUnSubscribeEvent
 } from "../../services/event-manager";
-import { useThemeStore } from "../../stores/use-theme-store";
+import { useThemeColors } from "@notesnook/theme";
 import { eCloseSheet, eOpenSheet } from "../../utils/events";
 import { SIZE } from "../../utils/size";
 import { sleep } from "../../utils/time";
@@ -34,7 +34,7 @@ import SheetWrapper from "../ui/sheet";
 import Heading from "../ui/typography/heading";
 import Paragraph from "../ui/typography/paragraph";
 const SheetProvider = ({ context = "global" }) => {
-  const colors = useThemeStore((state) => state.colors);
+  const colors = useThemeColors();
   const [visible, setVisible] = useState(false);
   const [dialogData, setDialogData] = useState(null);
   const actionSheetRef = useRef();
@@ -131,13 +131,13 @@ const SheetProvider = ({ context = "global" }) => {
               marginTop: 15
             }}
             size={50}
-            color={colors.accent}
+            color={colors.primary.accent}
           />
         ) : null}
 
         {dialogData?.icon ? (
           <Icon
-            color={colors[dialogData.iconColor] || colors.accent}
+            color={colors[dialogData.iconColor] || colors.primary.accent}
             name={dialogData.icon}
             size={50}
           />
@@ -202,8 +202,10 @@ const SheetProvider = ({ context = "global" }) => {
             onPress={dialogData.action}
             key={dialogData.actionText}
             title={dialogData.actionText}
-            accentColor={dialogData.iconColor || "accent"}
-            accentText="light"
+            buttonType={{
+              color: colors.static[dialogData.iconColor],
+              text: colors.static.white
+            }}
             type="accent"
             height={45}
             width={250}
@@ -240,10 +242,10 @@ const SheetProvider = ({ context = "global" }) => {
             }}
             size={SIZE.xs}
             onPress={dialogData.learnMorePress}
-            color={colors.icon}
+            color={colors.secondary.paragraph}
           >
             <Icon
-              color={colors.icon}
+              color={colors.primary.icon}
               name="information-outline"
               size={SIZE.xs}
             />{" "}

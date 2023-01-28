@@ -52,7 +52,6 @@ import {
 } from "./utils";
 import { EVENTS } from "@notesnook/core/common";
 import SettingsService from "../../../services/settings";
-
 export const useEditor = (
   editorId = "",
   readonly?: boolean,

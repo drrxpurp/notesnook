@@ -23,7 +23,7 @@ import { SheetManager } from "react-native-actions-sheet";
 import Animated, { FadeInDown, FadeOutUp } from "react-native-reanimated";
 import { DDS } from "../../services/device-detection";
 import { eSendEvent } from "../../services/event-manager";
-import { useThemeStore } from "../../stores/use-theme-store";
+import { useThemeColors } from "@notesnook/theme";
 import { SIZE } from "../../utils/size";
 import { sleep } from "../../utils/time";
 import BaseDialog from "../dialog/base-dialog";
@@ -46,7 +46,7 @@ const LoginSteps = {
 };
 
 export const Login = ({ changeMode }) => {
-  const colors = useThemeStore((state) => state.colors);
+  const colors = useThemeColors();
   const [focused, setFocused] = useState(false);
   const {
     step,
@@ -91,7 +91,7 @@ export const Login = ({ changeMode }) => {
         exiting={FadeOutUp}
         style={{
           borderRadius: DDS.isTab ? 5 : 0,
-          backgroundColor: colors.bg,
+          backgroundColor: colors.primary.background,
           zIndex: 10,
           width: "100%",
           minHeight: "100%"
@@ -104,7 +104,7 @@ export const Login = ({ changeMode }) => {
           }}
         >
           <SvgView
-            src={SVG(colors.night ? colors.icon : "black")}
+            src={SVG(colors.isDark ? colors.primary.icon : "black")}
             height={700}
           />
         </View>
@@ -123,7 +123,7 @@ export const Login = ({ changeMode }) => {
               textAlign: "center"
             }}
             size={30}
-            color={colors.heading}
+            color={colors.primary.heading}
           >
             Welcome back!
           </Heading>
@@ -151,7 +151,7 @@ export const Login = ({ changeMode }) => {
               ? "100%"
               : "99.9%",
             padding: 12,
-            backgroundColor: colors.bg,
+            backgroundColor: colors.primary.background,
             flexGrow: 1,
             alignSelf: "center"
           }}

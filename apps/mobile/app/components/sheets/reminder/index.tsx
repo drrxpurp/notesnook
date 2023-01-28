@@ -31,7 +31,7 @@ import {
   PresentSheetOptions,
   ToastEvent
 } from "../../../services/event-manager";
-import { useThemeStore } from "../../../stores/use-theme-store";
+import { useThemeColors } from "@notesnook/theme";
 import { SIZE } from "../../../utils/size";
 import { Button } from "../../ui/button";
 import Input from "../../ui/input";
@@ -99,7 +99,7 @@ export default function ReminderSheet({
   reminder,
   reference
 }: ReminderSheetProps) {
-  const colors = useThemeStore((state) => state.colors);
+  const colors = useThemeColors();
   const [reminderMode, setReminderMode] = useState<Reminder["mode"]>(
     reminder?.mode || "once"
   );
@@ -307,7 +307,7 @@ export default function ReminderSheet({
         {reminderMode === ReminderModes.Repeat ? (
           <View
             style={{
-              backgroundColor: colors.nav,
+              backgroundColor: colors.secondary.background,
               padding: 12,
               borderRadius: 5,
               marginBottom: 12
@@ -371,8 +371,8 @@ export default function ReminderSheet({
                         marginRight: 10,
                         backgroundColor:
                           selectedDays.indexOf(index) > -1
-                            ? colors.accent
-                            : colors.bg
+                            ? colors.primary.accent
+                            : colors.primary.background
                       }}
                       onPress={() => {
                         setSelectedDays((days) => {
@@ -401,8 +401,8 @@ export default function ReminderSheet({
                         marginRight: 10,
                         backgroundColor:
                           selectedDays.indexOf(index + 1) > -1
-                            ? colors.accent
-                            : colors.bg
+                            ? colors.primary.accent
+                            : colors.primary.background
                       }}
                       onPress={() => {
                         setSelectedDays((days) => {
@@ -441,9 +441,9 @@ export default function ReminderSheet({
             <DatePicker
               date={date}
               onDateChange={handleConfirm}
-              textColor={colors.night ? "#ffffff" : "#000000"}
-              fadeToColor={colors.bg}
-              theme={colors.night ? "dark" : "light"}
+              textColor={colors.isDark ? "#ffffff" : "#000000"}
+              fadeToColor={colors.primary.background}
+              theme={colors.isDark ? "dark" : "light"}
               is24hourSource="locale"
               mode={reminderMode === ReminderModes.Repeat ? "time" : "datetime"}
             />
@@ -472,7 +472,7 @@ export default function ReminderSheet({
               marginBottom: 12,
               paddingTop: 12,
               borderTopWidth: 1,
-              borderTopColor: colors.nav
+              borderTopColor: colors.secondary.background
             }}
           >
             {Object.keys(ReminderNotificationModes).map((mode) => (
@@ -523,11 +523,11 @@ export default function ReminderSheet({
               alignItems: "center",
               justifyContent: "flex-start",
               marginBottom: 10,
-              backgroundColor: colors.nav
+              backgroundColor: colors.secondary.background
             }}
           >
             <>
-              <Paragraph size={SIZE.xs + 1} color={colors.icon}>
+              <Paragraph size={SIZE.xs + 1} color={colors.secondary.paragraph}>
                 {recurringMode === RecurringModes.Daily
                   ? "Repeats daily " + `at ${dayjs(date).format("hh:mm A")}.`
                   : selectedDays.length === 7 &&

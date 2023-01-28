@@ -26,13 +26,13 @@ import { TopicNotes } from "../../screens/notes/topic-notes";
 import { presentSheet, ToastEvent } from "../../services/event-manager";
 import Navigation from "../../services/navigation";
 import { useNotebookStore } from "../../stores/use-notebook-store";
-import { useThemeStore } from "../../stores/use-theme-store";
+import { useThemeColors } from "@notesnook/theme";
 import { SIZE } from "../../utils/size";
 import { Button } from "../ui/button";
 import Heading from "../ui/typography/heading";
 
 export default function Notebooks({ note, close, full }) {
-  const colors = useThemeStore((state) => state.colors);
+  const colors = useThemeColors();
   const notebooks = useNotebookStore((state) => state.notebooks);
   function getNotebooks(item) {
     if (!item.notebooks || item.notebooks.length < 1) return [];

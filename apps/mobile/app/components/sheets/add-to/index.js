@@ -36,7 +36,7 @@ import Navigation from "../../../services/navigation";
 import SearchService from "../../../services/search";
 import { useNotebookStore } from "../../../stores/use-notebook-store";
 import { useSelectionStore } from "../../../stores/use-selection-store";
-import { useThemeStore } from "../../../stores/use-theme-store";
+import { useThemeColors } from "@notesnook/theme";
 import { eOpenMoveNoteDialog } from "../../../utils/events";
 import { Dialog } from "../../dialog";
 import DialogHeader from "../../dialog/dialog-header";
@@ -90,8 +90,8 @@ const AddToNotebookSheet = () => {
 export default AddToNotebookSheet;
 
 const MoveNoteComponent = ({ note }) => {
-  const colors = useThemeStore((state) => state.colors);
   const [multiSelect, setMultiSelect] = useState(false);
+  const colors = useThemeColors();
   const notebooks = useNotebookStore((state) =>
     state.notebooks.filter((n) => n?.type === "notebook")
   );
@@ -436,7 +436,11 @@ const MoveNoteComponent = ({ note }) => {
                     alignItems: "center"
                   }}
                 >
-                  <Icon name="book-outline" color={colors.icon} size={100} />
+                  <Icon
+                    name="book-outline"
+                    color={colors.primary.icon}
+                    size={100}
+                  />
                   <Paragraph style={{ marginBottom: 10 }}>
                     You do not have any notebooks.
                   </Paragraph>
@@ -493,7 +497,9 @@ const MoveNoteComponent = ({ note }) => {
                 })}
                 icon={(expanded) => ({
                   name: expanded ? "chevron-up" : "chevron-down",
-                  color: expanded ? colors.accent : colors.pri
+                  color: expanded
+                    ? colors.primary.accent
+                    : colors.primary.paragraph
                 })}
                 onScrollEnd={() => {
                   actionSheetRef.current?.handleChildScrollEnd();

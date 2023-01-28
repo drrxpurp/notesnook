@@ -24,7 +24,7 @@ import {
   eSubscribeEvent,
   eUnSubscribeEvent
 } from "../../services/event-manager";
-import { useThemeStore } from "../../stores/use-theme-store";
+import { useThemeColors } from "@notesnook/theme";
 import { getElevation } from "../../utils";
 import { eCloseSimpleDialog, eOpenSimpleDialog } from "../../utils/events";
 import { sleep } from "../../utils/time";
@@ -37,7 +37,7 @@ import DialogHeader from "./dialog-header";
 import { useCallback } from "react";
 
 export const Dialog = ({ context = "global" }) => {
-  const colors = useThemeStore((state) => state.colors);
+  const colors = useThemeColors();
   const [visible, setVisible] = useState(false);
   const [inputValue, setInputValue] = useState(null);
   const inputRef = useRef();
@@ -50,7 +50,7 @@ export const Dialog = ({ context = "global" }) => {
     onClose: () => {},
     positiveType: "transparent",
     icon: null,
-    paragraphColor: colors.pri,
+    paragraphColor: colors.primary.paragraph,
     input: false,
     inputPlaceholder: "Enter some text",
     defaultValue: "",
@@ -109,7 +109,7 @@ export const Dialog = ({ context = "global" }) => {
     width: DDS.isTab ? 400 : "85%",
     maxHeight: 450,
     borderRadius: 5,
-    backgroundColor: colors.bg,
+    backgroundColor: colors.primary.background,
     paddingTop: 12
   };
 

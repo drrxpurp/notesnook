@@ -32,7 +32,7 @@ import {
 } from "../../../services/event-manager";
 import SettingsService from "../../../services/settings";
 import { initialize } from "../../../stores";
-import { useThemeStore } from "../../../stores/use-theme-store";
+import { useThemeColors } from "@notesnook/theme";
 import { eCloseRestoreDialog, eOpenRestoreDialog } from "../../../utils/events";
 import { SIZE } from "../../../utils/size";
 import { sleep, timeConverter } from "../../../utils/time";
@@ -104,7 +104,7 @@ const RestoreDataSheet = () => {
 export default RestoreDataSheet;
 
 const RestoreDataComponent = ({ close, setRestoring, restoring }) => {
-  const colors = useThemeStore((state) => state.colors);
+  const colors = useThemeColors();
   const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [backupDirectoryAndroid, setBackupDirectoryAndroid] = useState(false);
@@ -237,7 +237,7 @@ const RestoreDataComponent = ({ close, setRestoring, restoring }) => {
         borderRadius: 0,
         flexDirection: "row",
         borderBottomWidth: 0.5,
-        borderBottomColor: colors.nav
+        borderBottomColor: colors.secondary.background
       }}
     >
       <View
@@ -376,7 +376,7 @@ const RestoreDataComponent = ({ close, setRestoring, restoring }) => {
                     height: 100
                   }}
                 >
-                  <ActivityIndicator color={colors.accent} size={SIZE.lg} />
+                  <ActivityIndicator color={colors.primary.accent} size={SIZE.lg} />
                 </View>
               ) : (
                 <View
@@ -426,14 +426,14 @@ const RestoreDataComponent = ({ close, setRestoring, restoring }) => {
                         }}
                         size={SIZE.xs}
                         textBreakStrategy="balanced"
-                        color={colors.icon}
+                        color={colors.secondary.paragraph}
                       >
                         Select the folder that includes your backup files to
                         list them here.
                       </Paragraph>
                     </>
                   ) : (
-                    <Paragraph color={colors.icon}>No backups found</Paragraph>
+                    <Paragraph color={colors.secondary.paragraph}>No backups found</Paragraph>
                   )}
                 </View>
               )
@@ -445,8 +445,8 @@ const RestoreDataComponent = ({ close, setRestoring, restoring }) => {
                   height: 200
                 }}
               >
-                <ActivityIndicator color={colors.accent} />
-                <Paragraph color={colors.icon}>
+                <ActivityIndicator color={colors.primary.accent} />
+                <Paragraph color={colors.secondary.paragraph}>
                   Restoring {progress ? progress?.collection : null}
                   {progress ? `(${progress.current}/${progress.total}) ` : null}
                   ...Please wait.

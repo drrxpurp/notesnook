@@ -223,7 +223,7 @@ class RecoveryKeySheet extends React.Component {
         <View
           style={{
             width: "100%",
-            backgroundColor: colors.bg,
+            backgroundColor: colors.primary.background,
             justifyContent: "space-between",
             paddingHorizontal: 12,
             borderRadius: 10,
@@ -244,7 +244,7 @@ class RecoveryKeySheet extends React.Component {
             }}
           >
             <Paragraph
-              color={colors.pri}
+              color={colors.primary.paragraph}
               size={SIZE.sm}
               numberOfLines={2}
               selectable
@@ -334,7 +334,7 @@ class RecoveryKeySheet extends React.Component {
           <Seperator />
 
           <Paragraph
-            color={colors.icon}
+            color={colors.secondary.paragraph}
             size={SIZE.sm}
             numberOfLines={2}
             style={{

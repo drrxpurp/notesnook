@@ -27,7 +27,7 @@ import {
   eSubscribeEvent,
   eUnSubscribeEvent
 } from "../../services/event-manager";
-import { useThemeStore } from "../../stores/use-theme-store";
+import { useThemeColors } from "@notesnook/theme";
 import {
   eCloseAttachmentDialog,
   eOpenAttachmentsDialog
@@ -41,7 +41,7 @@ import SheetWrapper from "../ui/sheet";
 import Paragraph from "../ui/typography/paragraph";
 import { AttachmentItem } from "./attachment-item";
 export const AttachmentDialog = () => {
-  const colors = useThemeStore((state) => state.colors);
+  const colors = useThemeColors();
   const [visible, setVisible] = useState(false);
   const [note, setNote] = useState(null);
   const actionSheetRef = useRef();
@@ -175,7 +175,7 @@ export const AttachmentDialog = () => {
                 alignItems: "center"
               }}
             >
-              <Icon name="attachment" size={60} color={colors.icon} />
+              <Icon name="attachment" size={60} color={colors.primary.icon} />
               <Paragraph>
                 {note ? "No attachments on this note" : "No attachments"}
               </Paragraph>
@@ -194,14 +194,14 @@ export const AttachmentDialog = () => {
         />
 
         <Paragraph
-          color={colors.icon}
+          color={colors.secondary.paragraph}
           size={SIZE.xs}
           style={{
             textAlign: "center",
             marginTop: 10
           }}
         >
-          <Icon name="shield-key-outline" size={SIZE.xs} color={colors.icon} />
+          <Icon name="shield-key-outline" size={SIZE.xs} color={colors.primary.icon} />
           {"  "}All attachments are end-to-end encrypted.
         </Paragraph>
       </View>

@@ -29,7 +29,7 @@ import {
 } from "../../../services/event-manager";
 import Navigation from "../../../services/navigation";
 import { useAttachmentStore } from "../../../stores/use-attachment-store";
-import { useThemeStore } from "../../../stores/use-theme-store";
+import { useThemeColors } from "@notesnook/theme";
 import {
   eClosePublishNoteDialog,
   eOpenPublishNoteDialog
@@ -47,7 +47,7 @@ import Paragraph from "../../ui/typography/paragraph";
 
 let passwordValue = null;
 const PublishNoteSheet = () => {
-  const colors = useThemeStore((state) => state.colors);
+  const colors = useThemeColors();
   const [visible, setVisible] = useState(false);
   const actionSheetRef = useRef();
   const loading = useAttachmentStore((state) => state.loading);
@@ -184,7 +184,7 @@ const PublishNoteSheet = () => {
               width: "100%"
             }}
           >
-            <ActivityIndicator size={25} color={colors.accent} />
+            <ActivityIndicator size={25} color={colors.primary.accent} />
             <Paragraph
               style={{
                 textAlign: "center"
@@ -206,7 +206,7 @@ const PublishNoteSheet = () => {
                   flexDirection: "row",
                   alignItems: "center",
                   marginTop: 15,
-                  backgroundColor: colors.nav,
+                  backgroundColor: colors.secondary.background,
                   padding: 12,
                   borderRadius: 5
                 }}
@@ -224,7 +224,7 @@ const PublishNoteSheet = () => {
                   <Paragraph
                     onPress={async () => {
                       try {
-                        await openLinkInBrowser(publishUrl, colors.accent);
+                        await openLinkInBrowser(publishUrl, colors.primary.accent);
                       } catch (e) {
                         console.error(e);
                       }
@@ -232,10 +232,10 @@ const PublishNoteSheet = () => {
                     size={SIZE.xs}
                     style={{
                       marginTop: 5,
-                      color: colors.pri
+                      color: colors.primary.paragraph
                     }}
                   >
-                    <Icon color={colors.accent} name="open-in-new" /> Open in
+                    <Icon color={colors.primary.accent} name="open-in-new" /> Open in
                     browser
                   </Paragraph>
                 </View>
@@ -249,7 +249,7 @@ const PublishNoteSheet = () => {
                       context: "local"
                     });
                   }}
-                  color={colors.accent}
+                  color={colors.primary.accent}
                   size={SIZE.lg}
                   name="content-copy"
                 />
@@ -274,7 +274,7 @@ const PublishNoteSheet = () => {
                   if (publishing) return;
                   setIsLocked(!isLocked);
                 }}
-                color={isLocked ? colors.accent : colors.icon}
+                color={isLocked ? colors.primary.accent : colors.primary.icon}
                 size={SIZE.lg}
                 name={
                   isLocked
@@ -311,7 +311,7 @@ const PublishNoteSheet = () => {
                 onPress={() => {
                   setSelfDestruct(!selfDestruct);
                 }}
-                color={selfDestruct ? colors.accent : colors.icon}
+                color={selfDestruct ? colors.primary.accent : colors.primary.icon}
                 size={SIZE.lg}
                 name={
                   selfDestruct
@@ -385,7 +385,7 @@ const PublishNoteSheet = () => {
         )}
 
         <Paragraph
-          color={colors.icon}
+          color={colors.secondary.paragraph}
           size={SIZE.xs}
           style={{
             textAlign: "center",
@@ -396,7 +396,7 @@ const PublishNoteSheet = () => {
             try {
               await openLinkInBrowser(
                 "https://docs.notesnook.com/monographs/",
-                colors.accent
+                colors.primary.accent
               );
             } catch (e) {
               console.error(e);

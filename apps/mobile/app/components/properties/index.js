@@ -24,7 +24,7 @@ import { db } from "../../common/database";
 import { DDS } from "../../services/device-detection";
 import { presentSheet } from "../../services/event-manager";
 import SearchService from "../../services/search";
-import { useThemeStore } from "../../stores/use-theme-store";
+import { useThemeColors } from "@notesnook/theme";
 import { COLORS_NOTE } from "../../utils/color-scheme";
 import { SIZE } from "../../utils/size";
 import SheetProvider from "../sheet-provider";
@@ -39,12 +39,12 @@ import { Synced } from "./synced";
 import { Tags, TagStrip } from "./tags";
 
 const Line = ({ top = 6, bottom = 6 }) => {
-  const colors = useThemeStore((state) => state.colors);
+  const colors = useThemeColors();
   return (
     <View
       style={{
         height: 1,
-        backgroundColor: colors.nav,
+        backgroundColor: colors.primary.border,
         width: "100%",
         marginTop: top,
         marginBottom: bottom
@@ -59,7 +59,7 @@ export const Properties = ({
   buttons = [],
   getRef
 }) => {
-  const colors = useThemeStore((state) => state.colors);
+  const colors = useThemeColors();
   const alias = item.alias || item.title;
   const isColor = !!COLORS_NOTE[item.title];
 
@@ -81,7 +81,7 @@ export const Properties = ({
       keyboardShouldPersistTaps="always"
       keyboardDismissMode="none"
       style={{
-        backgroundColor: colors.bg,
+        backgroundColor: colors.primary.background,
         paddingHorizontal: 0,
         borderBottomRightRadius: DDS.isLargeTablet() ? 10 : 1,
         borderBottomLeftRadius: DDS.isLargeTablet() ? 10 : 1,
@@ -100,7 +100,6 @@ export const Properties = ({
             <Heading size={SIZE.xl} color={colors.accent}>
               #
             </Heading>
-
           ) : null}
           {alias}
         </Heading>

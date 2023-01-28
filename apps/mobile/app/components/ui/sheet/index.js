@@ -22,7 +22,7 @@ import { Platform, View } from "react-native";
 import ActionSheet from "react-native-actions-sheet";
 import useGlobalSafeAreaInsets from "../../../hooks/use-global-safe-area-insets";
 import { useSettingStore } from "../../../stores/use-setting-store";
-import { useThemeStore } from "../../../stores/use-theme-store";
+import { useThemeColors } from "@notesnook/theme";
 import { PremiumToast } from "../../premium/premium-toast";
 import { Toast } from "../../toast";
 import { BouncingView } from "../transitions/bouncing-view";
@@ -39,7 +39,7 @@ const SheetWrapper = ({
   overlay,
   overlayOpacity = 0.3
 }) => {
-  const colors = useThemeStore((state) => state.colors);
+  const colors = useThemeColors();
   const deviceMode = useSettingStore((state) => state.deviceMode);
   const sheetKeyboardHandler = useSettingStore(
     (state) => state.sheetKeyboardHandler
@@ -55,7 +55,7 @@ const SheetWrapper = ({
   const style = React.useMemo(() => {
     return {
       width: largeTablet || smallTablet ? width : "100%",
-      backgroundColor: colors.bg,
+      backgroundColor: colors.primary.background,
       zIndex: 10,
       paddingTop: 5,
       paddingBottom: 0,
@@ -65,7 +65,7 @@ const SheetWrapper = ({
       borderBottomRightRadius: 0,
       borderBottomLeftRadius: 0
     };
-  }, [colors.bg, largeTablet, smallTablet, width]);
+  }, [colors.primary.background, largeTablet, smallTablet, width]);
 
   const _onOpen = () => {
     onOpen && onOpen();
@@ -95,7 +95,7 @@ const SheetWrapper = ({
       keyboardMode={keyboardMode}
       keyboardHandlerEnabled={sheetKeyboardHandler}
       closeOnPressBack={closeOnTouchBackdrop}
-      indicatorColor={colors.nav}
+      indicatorColor={colors.secondary.background}
       onOpen={_onOpen}
       keyboardDismissMode="none"
       defaultOverlayOpacity={overlayOpacity}
