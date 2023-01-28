@@ -21,6 +21,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "pub": "npm run build && npm publish"
+    "pub": "npm run build && npm publish",
+    "watch": "tsc --watch"
   }
 }
