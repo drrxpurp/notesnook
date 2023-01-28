@@ -441,7 +441,7 @@ export default function ReminderSheet({
             <DatePicker
               date={date}
               onDateChange={handleConfirm}
-              textColor={colors.isDark ? "#ffffff" : "#000000"}
+              textColor={colors.isDark ? colors.static.white : colors.static.black}
               fadeToColor={colors.primary.background}
               theme={colors.isDark ? "dark" : "light"}
               is24hourSource="locale"
