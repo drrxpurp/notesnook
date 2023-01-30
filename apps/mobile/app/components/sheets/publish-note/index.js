@@ -47,7 +47,7 @@ import Paragraph from "../../ui/typography/paragraph";
 
 let passwordValue = null;
 const PublishNoteSheet = () => {
-  const colors = useThemeColors();
+  const { colors } = useThemeColors();
   const [visible, setVisible] = useState(false);
   const actionSheetRef = useRef();
   const loading = useAttachmentStore((state) => state.loading);

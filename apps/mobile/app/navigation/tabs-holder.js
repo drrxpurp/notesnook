@@ -71,7 +71,7 @@ import { sleep } from "../utils/time";
 import { NavigationStack } from "./navigation-stack";
 
 const _TabsHolder = () => {
-  const colors = useThemeColors();
+  const { colors, isDark } = useThemeColors();
   const deviceMode = useSettingStore((state) => state.deviceMode);
   const setFullscreen = useSettingStore((state) => state.setFullscreen);
   const fullscreen = useSettingStore((state) => state.fullscreen);
@@ -405,7 +405,7 @@ const _TabsHolder = () => {
       }}
     >
       <StatusBar
-        barStyle={colors.isDark ? "light-content" : "dark-content"}
+        barStyle={isDark ? "light-content" : "dark-content"}
         translucent={true}
         backgroundColor="transparent"
       />

@@ -59,7 +59,7 @@ export const Properties = ({
   buttons = [],
   getRef
 }) => {
-  const colors = useThemeColors();
+  const { colors } = useThemeColors();
   const alias = item.alias || item.title;
   const isColor = !!COLORS_NOTE[item.title];
 

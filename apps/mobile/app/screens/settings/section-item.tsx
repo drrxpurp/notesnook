@@ -39,7 +39,7 @@ import { components } from "./components";
 import { RouteParams, SettingSection } from "./types";
 
 const _SectionItem = ({ item }: { item: SettingSection }) => {
-  const colors = useThemeColors();
+  const { colors } = useThemeColors();
   const settings = useSettingStore((state) => state.settings);
   const navigation = useNavigation<NavigationProp<RouteParams>>();
   const current = item.useHook && item.useHook(item);

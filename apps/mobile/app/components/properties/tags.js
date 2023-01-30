@@ -29,7 +29,7 @@ import { sleep } from "../../utils/time";
 import { Button } from "../ui/button";
 import { ColorTags } from "./color-tags";
 export const Tags = ({ item, close }) => {
-  const colors = useThemeColors();
+  const { colors } = useThemeColors();
 
   return item.id ? (
     <View

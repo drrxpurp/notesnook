@@ -36,7 +36,7 @@ import Heading from "../ui/typography/heading";
 import Paragraph from "../ui/typography/paragraph";
 let toastMessages = [];
 export const Toast = ({ context = "global" }) => {
-  const colors = useThemeColors();
+  const { colors } = useThemeColors();
   const [keyboard, setKeyboard] = useState(false);
   const [data, setData] = useState({});
   const insets = useGlobalSafeAreaInsets();

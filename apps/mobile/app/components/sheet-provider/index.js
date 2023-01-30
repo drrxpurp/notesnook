@@ -34,7 +34,7 @@ import SheetWrapper from "../ui/sheet";
 import Heading from "../ui/typography/heading";
 import Paragraph from "../ui/typography/paragraph";
 const SheetProvider = ({ context = "global" }) => {
-  const colors = useThemeColors();
+  const { colors } = useThemeColors();
   const [visible, setVisible] = useState(false);
   const [dialogData, setDialogData] = useState(null);
   const actionSheetRef = useRef();

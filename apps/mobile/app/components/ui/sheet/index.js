@@ -39,7 +39,7 @@ const SheetWrapper = ({
   overlay,
   overlayOpacity = 0.3
 }) => {
-  const colors = useThemeColors();
+  const { colors } = useThemeColors();
   const deviceMode = useSettingStore((state) => state.deviceMode);
   const sheetKeyboardHandler = useSettingStore(
     (state) => state.sheetKeyboardHandler

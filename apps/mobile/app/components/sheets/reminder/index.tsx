@@ -99,7 +99,7 @@ export default function ReminderSheet({
   reminder,
   reference
 }: ReminderSheetProps) {
-  const colors = useThemeColors();
+  const { colors, isDark } = useThemeColors();
   const [reminderMode, setReminderMode] = useState<Reminder["mode"]>(
     reminder?.mode || "once"
   );
@@ -441,9 +441,9 @@ export default function ReminderSheet({
             <DatePicker
               date={date}
               onDateChange={handleConfirm}
-              textColor={colors.isDark ? colors.static.white : colors.static.black}
+              textColor={isDark ? colors.static.white : colors.static.black}
               fadeToColor={colors.primary.background}
-              theme={colors.isDark ? "dark" : "light"}
+              theme={isDark ? "dark" : "light"}
               is24hourSource="locale"
               mode={reminderMode === ReminderModes.Repeat ? "time" : "datetime"}
             />

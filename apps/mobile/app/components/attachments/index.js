@@ -41,7 +41,7 @@ import SheetWrapper from "../ui/sheet";
 import Paragraph from "../ui/typography/paragraph";
 import { AttachmentItem } from "./attachment-item";
 export const AttachmentDialog = () => {
-  const colors = useThemeColors();
+  const { colors } = useThemeColors();
   const [visible, setVisible] = useState(false);
   const [note, setNote] = useState(null);
   const actionSheetRef = useRef();

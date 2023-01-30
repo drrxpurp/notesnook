@@ -62,7 +62,7 @@ const IntroStack = createNativeStackNavigator();
  */
 
 const IntroStackNavigator = () => {
-  const colors = useThemeColors();
+  const { colors } = useThemeColors();
   return (
     <IntroStack.Navigator
       screenOptions={{
@@ -82,7 +82,7 @@ const IntroStackNavigator = () => {
 };
 
 const _Tabs = () => {
-  const colors = useThemeColors();
+  const { colors } = useThemeColors();
   const homepage = SettingsService.get().homepage;
   const introCompleted = useSettingStore(
     (state) => state.settings.introCompleted

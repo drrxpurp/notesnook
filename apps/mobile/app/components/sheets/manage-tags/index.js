@@ -39,7 +39,7 @@ import Heading from "../../ui/typography/heading";
 import Paragraph from "../../ui/typography/paragraph";
 import { useCallback } from "react";
 const ManageTagsSheet = () => {
-  const colors = useThemeColors();
+  const { colors } = useThemeColors();
   const [visible, setVisible] = useState(false);
   const [note, setNote] = useState(null);
   const allTags = useTagStore((state) => state.tags);
@@ -251,7 +251,7 @@ const ManageTagsSheet = () => {
 export default ManageTagsSheet;
 
 const TagItem = ({ tag, note, setNote }) => {
-  const colors = useThemeColors();
+  const { colors } = useThemeColors();
 
   const onPress = async () => {
     let prevNote = { ...note };

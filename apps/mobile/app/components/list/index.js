@@ -105,7 +105,7 @@ const List = ({
   isSheet = false,
   onMomentumScrollEnd
 }) => {
-  const colors = useThemeColors();
+  const { colors } = useThemeColors();
   const scrollRef = useRef();
   const [notesListMode, notebooksListMode] = useSettingStore((state) => [
     state.settings.notesListMode,

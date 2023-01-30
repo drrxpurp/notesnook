@@ -37,7 +37,7 @@ import DialogHeader from "./dialog-header";
 import { useCallback } from "react";
 
 export const Dialog = ({ context = "global" }) => {
-  const colors = useThemeColors();
+  const { colors } = useThemeColors();
   const [visible, setVisible] = useState(false);
   const [inputValue, setInputValue] = useState(null);
   const inputRef = useRef();
