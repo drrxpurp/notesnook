@@ -22,7 +22,7 @@ import { Platform, View } from "react-native";
 import ActionSheet from "react-native-actions-sheet";
 import useGlobalSafeAreaInsets from "../../../hooks/use-global-safe-area-insets";
 import { useSettingStore } from "../../../stores/use-setting-store";
-import { useThemeColors } from "@notesnook/theme";
+import { ScopedThemeProvider, useThemeColors } from "@notesnook/theme";
 import { PremiumToast } from "../../premium/premium-toast";
 import { Toast } from "../../toast";
 import { BouncingView } from "../transitions/bouncing-view";
@@ -78,54 +78,56 @@ const SheetWrapper = ({
   };
 
   return (
-    <ActionSheet
-      ref={fwdRef}
-      testIDs={{
-        backdrop: "sheet-backdrop"
-      }}
-      indicatorStyle={{
-        width: 100
-      }}
-      drawUnderStatusBar={false}
-      containerStyle={style}
-      gestureEnabled={gestureEnabled}
-      initialOffsetFromBottom={1}
-      onPositionChanged={onHasReachedTop}
-      closeOnTouchBackdrop={closeOnTouchBackdrop}
-      keyboardMode={keyboardMode}
-      keyboardHandlerEnabled={sheetKeyboardHandler}
-      closeOnPressBack={closeOnTouchBackdrop}
-      indicatorColor={colors.secondary.background}
-      onOpen={_onOpen}
-      keyboardDismissMode="none"
-      defaultOverlayOpacity={overlayOpacity}
-      overlayColor={pitchBlack ? "#585858" : "#000000"}
-      keyboardShouldPersistTaps="always"
-      ExtraOverlayComponent={
-        <>
-          {overlay}
-          <PremiumToast
-            context="sheet"
-            close={() => fwdRef?.current?.hide()}
-            offset={50}
+    <ScopedThemeProvider value="popup">
+      <ActionSheet
+        ref={fwdRef}
+        testIDs={{
+          backdrop: "sheet-backdrop"
+        }}
+        indicatorStyle={{
+          width: 100
+        }}
+        drawUnderStatusBar={false}
+        containerStyle={style}
+        gestureEnabled={gestureEnabled}
+        initialOffsetFromBottom={1}
+        onPositionChanged={onHasReachedTop}
+        closeOnTouchBackdrop={closeOnTouchBackdrop}
+        keyboardMode={keyboardMode}
+        keyboardHandlerEnabled={sheetKeyboardHandler}
+        closeOnPressBack={closeOnTouchBackdrop}
+        indicatorColor={colors.secondary.background}
+        onOpen={_onOpen}
+        keyboardDismissMode="none"
+        defaultOverlayOpacity={overlayOpacity}
+        overlayColor={pitchBlack ? "#585858" : "#000000"}
+        keyboardShouldPersistTaps="always"
+        ExtraOverlayComponent={
+          <>
+            {overlay}
+            <Toast context="local" />
+            <PremiumToast
+              context="sheet"
+              close={() => fwdRef?.current?.hide()}
+              offset={50}
+            />
+          </>
+        }
+        onClose={_onClose}
+      >
+        <BouncingView>
+          {children}
+          <View
+            style={{
+              height:
+                Platform.OS === "ios" && insets.bottom !== 0
+                  ? insets.bottom + 5
+                  : 20
+            }}
           />
-          <Toast context="local" />
-        </>
-      }
-      onClose={_onClose}
-    >
-      <BouncingView>
-        {children}
-        <View
-          style={{
-            height:
-              Platform.OS === "ios" && insets.bottom !== 0
-                ? insets.bottom + 5
-                : 20
-          }}
-        />
-      </BouncingView>
-    </ActionSheet>
+        </BouncingView>
+      </ActionSheet>
+    </ScopedThemeProvider>
   );
 };
 

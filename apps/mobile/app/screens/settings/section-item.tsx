@@ -61,7 +61,7 @@ const _SectionItem = ({ item }: { item: SettingSection }) => {
   const styles =
     item.type === "danger"
       ? {
-          backgroundColor: colors.errorBg
+          backgroundColor: colors.error.background
         }
       : {};
   return isHidden ? null : (
@@ -83,7 +83,7 @@ const _SectionItem = ({ item }: { item: SettingSection }) => {
             navigation.dispatch(StackActions.push("SettingsGroup", item));
             useNavigationStore.getState().update(
               {
-                name: "SettingsGroup",
+                name: "SettingsGroup" as never,
                 title:
                   typeof item.name === "function"
                     ? item.name(current)
