@@ -21,4 +21,4 @@ You are in a notes app, the first thing you want to do is make a note.
 
 ---
 
-And that is how you create your first private note on Notesnook!
+And that is how you create your first private note in Notesnook!
