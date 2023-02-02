@@ -145,6 +145,13 @@ function TipTap(props: TipTapProps) {
             }
             return true;
           }
+        },
+        transformPastedHTML: (html) => {
+          if (!html.includes("<br")) return html;
+          const transformedHtml = html.replace(/<br[^>]*>/gm, "</p><p>");
+          return html.trim().startsWith("<p>")
+            ? transformedHtml
+            : "<p>" + transformedHtml;
         }
       },
       downloadOptions,
