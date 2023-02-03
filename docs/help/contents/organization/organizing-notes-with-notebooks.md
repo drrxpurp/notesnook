@@ -98,7 +98,7 @@ Adding a description & topics are optional.
 
 ---
 
-### Creating a new note in topic
+### Creating a new note in a notebook
 
 # [Desktop/Web](#/tab/web)
 
@@ -115,6 +115,15 @@ Adding a description & topics are optional.
 4. Start writing in editor to create a note in the topic
 
 ---
+
+{% info %}
+
+Once a note is added to a notebook, it's refernence will show on top of the note in the list. Clicking on it will take you to the topic.
+
+![Notebook reference on a note](/notebook-ref.png)
+
+{% end %}
+
 
 ### Adding a note to a topic
 
