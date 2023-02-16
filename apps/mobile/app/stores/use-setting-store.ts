@@ -25,7 +25,7 @@ import { FileType } from "react-native-scoped-storage";
 import create, { State } from "zustand";
 import { Reminder } from "../services/notifications";
 import { ACCENT } from "../utils/color-scheme";
-import { ThemeDark, ThemeLight } from "@notesnook/theme";
+import { ThemeDark, ThemeLight, ThemeDefinition } from "@notesnook/theme";
 export type Settings = {
   showToolbarOnTop?: boolean;
   showKeyboardOnOpen?: boolean;
@@ -74,8 +74,8 @@ export type Settings = {
   disableRealtimeSync?: boolean;
   notificationSound?: Sound & { platform: PlatformOSType };
   colorScheme: "dark" | "light";
-  lighTheme: typeof ThemeDark;
-  darkTheme: typeof ThemeDark;
+  lighTheme: ThemeDefinition;
+  darkTheme: ThemeDefinition;
 };
 
 type DimensionsType = {
