@@ -37,6 +37,7 @@ import Announcements from "../announcements";
 import { ListLoader } from "../loaders/list-loader";
 import ScrollContainer from "../scroll-container";
 import { useKeyboardListNavigation } from "../../hooks/use-keyboard-list-navigation";
+import { ScopedThemeProvider } from "../theme-provider";
 
 const CustomScrollbarsVirtualList = forwardRef<HTMLDivElement, ScrollerProps>(
   function CustomScrollbarsVirtualList(props, ref) {
@@ -249,7 +250,7 @@ function ListContainer(props: ListContainerProps) {
             height: 45
           }}
         >
-          <Icon.Plus color="static" />
+          <Icon.Plus color="white" />
         </Button>
       )}
     </Flex>

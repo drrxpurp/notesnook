@@ -52,7 +52,7 @@ function Placeholder(props) {
             variant="tool"
             onClick={callToAction.onClick}
           >
-            <callToAction.icon size={18} color="primary" />
+            <callToAction.icon size={18} color="accent" />
             <Text ml={1}>{callToAction.text}</Text>
           </Button>
         )}

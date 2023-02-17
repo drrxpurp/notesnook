@@ -19,7 +19,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import MDIIcon from "@mdi/react";
 import { Theme } from "@notesnook/theme";
-import { SchemeColors } from "@notesnook/theme/dist/theme/colorscheme";
+import {
+  isThemeColor,
+  SchemeColors
+} from "@notesnook/theme/dist/theme/colorscheme";
 import { Flex, FlexProps } from "@theme-ui/components";
 import { useTheme } from "@emotion/react";
 
@@ -27,7 +30,7 @@ type IconProps = {
   title?: string;
   path: string;
   size?: keyof Theme["iconSizes"] | number;
-  color?: keyof SchemeColors;
+  color?: SchemeColors;
   stroke?: string;
   rotate?: boolean;
 };
@@ -41,9 +44,10 @@ function MDIIconWrapper({
 }: IconProps) {
   const theme = useTheme() as Theme;
 
-  const themedColor: string = theme?.colors
-    ? (theme.colors[color] as string)
-    : color;
+  const themedColor: string =
+    theme?.colors && isThemeColor(color, theme.colors)
+      ? theme.colors[color]
+      : color;
 
   return (
     <MDIIcon
@@ -52,7 +56,7 @@ function MDIIconWrapper({
       path={path}
       size={
         typeof size === "string"
-          ? `${theme?.iconSizes[size] || 24}px`
+          ? `${theme?.iconSizes?.[size] || 24}px`
           : `${size}px`
       }
       style={{

@@ -129,7 +129,6 @@ export function ImageComponent(
                   : Icons.image
               }
               size={width ? width * 0.2 : 72}
-              color="gray"
             />
 
             <Text

@@ -84,7 +84,6 @@ export function Dropdown(props: DropdownProps) {
         <Icon
           path={isBottom ? Icons.chevronUp : Icons.chevronDown}
           size={"small"}
-          color={"text"}
         />
       </Button>
 

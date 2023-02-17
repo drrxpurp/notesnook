@@ -28,7 +28,7 @@ type ResizerProps = {
   selected: boolean;
   width?: number;
   height?: number;
-  handleColor?: keyof SchemeColors;
+  handleColor?: SchemeColors;
   onResize: (width: number, height: number) => void;
 };
 export function Resizer(props: PropsWithChildren<ResizerProps>) {

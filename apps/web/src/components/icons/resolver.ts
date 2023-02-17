@@ -20,9 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import { toTitleCase, toCamelCase, KebabCase } from "../../utils/string";
 import * as Icons from "./index";
 
-export function getIconFromAlias<T extends KebabCase<keyof typeof Icons>>(
-  alias: T
-) {
+export type IconNames = KebabCase<keyof typeof Icons>;
+export function getIconFromAlias(alias: IconNames) {
   if (!alias) return;
   const iconName = toTitleCase(toCamelCase(alias));
   return Icons[iconName as keyof typeof Icons];

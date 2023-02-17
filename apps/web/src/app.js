@@ -19,7 +19,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import React, { useState, Suspense, useMemo, useRef } from "react";
 import { Box, Flex } from "@theme-ui/components";
-import ThemeProvider from "./components/theme-provider";
+import {
+  BaseThemeProvider,
+  ScopedThemeProvider
+} from "./components/theme-provider";
 import useMobile from "./hooks/use-mobile";
 import useTablet from "./hooks/use-tablet";
 import { LazyMotion, domAnimation } from "framer-motion";
@@ -50,7 +53,7 @@ function App() {
 
   return (
     <LazyMotion features={domAnimation} strict>
-      <ThemeProvider>
+      <BaseThemeProvider sx={{ height: "100%" }}>
         {isAppLoaded && (
           <Suspense fallback={<div style={{ display: "none" }} />}>
             <div id="menu-wrapper">
@@ -82,7 +85,7 @@ function App() {
           )}
           <Toaster containerClassName="toasts-container" />
         </Flex>
-      </ThemeProvider>
+      </BaseThemeProvider>
     </LazyMotion>
   );
 }
@@ -152,23 +155,36 @@ function DesktopAppContents({ isAppLoaded, show, setShow }) {
             visible={show}
             priority={LayoutPriority.Normal}
           >
-            <Flex className="listMenu" variant="columnFill">
+            <ScopedThemeProvider
+              className="listMenu"
+              scope="list"
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                flex: 1,
+                bg: "background"
+              }}
+            >
               <SuspenseLoader
                 condition={isAppLoaded}
                 component={CachedRouter}
                 fallback={<ViewLoader />}
               />
-            </Flex>
+            </ScopedThemeProvider>
           </Allotment.Pane>
           <Allotment.Pane
             className="pane editor-pane"
             priority={LayoutPriority.High}
           >
-            <Flex
+            <ScopedThemeProvider
+              className="listMenu"
+              scope="editor"
               sx={{
+                display: "flex",
                 overflow: "hidden",
                 flex: 1,
-                flexDirection: "column"
+                flexDirection: "column",
+                bg: "background"
               }}
             >
               <SuspenseLoader
@@ -176,7 +192,7 @@ function DesktopAppContents({ isAppLoaded, show, setShow }) {
                 component={HashRouter}
                 condition={isAppLoaded}
               />
-            </Flex>
+            </ScopedThemeProvider>
           </Allotment.Pane>
         </Allotment>
       </Flex>

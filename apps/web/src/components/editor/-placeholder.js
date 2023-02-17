@@ -51,7 +51,7 @@ function EditorPlaceholder() {
           hashNavigate("/notes/create", { addNonce: true, replace: true })
         }
       >
-        <Icon.Plus size={18} color="primary" />
+        <Icon.Plus size={18} color="accent" />
         <Text ml={1}>Make a new note</Text>
       </Button>
     </Flex>

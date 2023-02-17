@@ -22,12 +22,12 @@ import { useStore as useAppStore } from "../../stores/app-store";
 import { useMenuTrigger } from "../../hooks/use-menu";
 import useMobile from "../../hooks/use-mobile";
 import { PropsWithChildren } from "react";
-import { Theme } from "@notesnook/theme";
 import { Icon, Shortcut } from "../icons";
+import { SchemeColors } from "@notesnook/theme/dist/theme/colorscheme";
 
 type NavigationItemProps = {
   icon: Icon;
-  color?: keyof Theme["colors"];
+  color?: SchemeColors;
   title: string;
   isTablet?: boolean;
   isLoading?: boolean;
@@ -35,7 +35,6 @@ type NavigationItemProps = {
   tag?: string;
   selected?: boolean;
   onClick?: () => void;
-  count?: number;
   // TODO: add proper typings here
   menuItems?: any[];
 };
@@ -52,8 +51,7 @@ function NavigationItem(props: PropsWithChildren<NavigationItemProps>) {
     isTablet,
     selected,
     onClick,
-    menuItems,
-    count
+    menuItems
   } = props;
   const toggleSideMenu = useAppStore((store) => store.toggleSideMenu);
   const { openMenu } = useMenuTrigger();
@@ -61,7 +59,7 @@ function NavigationItem(props: PropsWithChildren<NavigationItemProps>) {
 
   return (
     <Flex
-      bg={selected ? "bgSecondaryHover" : "transparent"}
+      bg={selected ? "shade" : "transparent"}
       sx={{
         borderRadius: "default",
         mx: 1,
@@ -71,7 +69,7 @@ function NavigationItem(props: PropsWithChildren<NavigationItemProps>) {
         ":first-of-type": { mt: 1 },
         ":last-of-type": { mb: 1 },
         ":hover:not(:disabled)": {
-          bg: "bgSecondaryHover",
+          bg: "hover",
           filter: "brightness(100%)"
         }
       }}
@@ -99,7 +97,7 @@ function NavigationItem(props: PropsWithChildren<NavigationItemProps>) {
       >
         <Icon
           size={isTablet ? 16 : 15}
-          color={color || (selected ? "primary" : "icon")}
+          color={color || (selected ? "accent" : "icon")}
           rotate={isLoading}
         />
         {isShortcut && (
@@ -130,8 +128,8 @@ function NavigationItem(props: PropsWithChildren<NavigationItemProps>) {
               variant="subBody"
               as="span"
               sx={{
-                bg: "primary",
-                color: "static",
+                bg: "accent",
+                color: "white",
                 ml: 1,
                 px: "small",
                 borderRadius: "default"
@@ -142,16 +140,7 @@ function NavigationItem(props: PropsWithChildren<NavigationItemProps>) {
           )}
         </Text>
       </Button>
-      {children ? (
-        children
-      ) : !isTablet && count !== undefined ? (
-        <Text
-          variant="subBody"
-          sx={{ mr: 1, bg: "hover", px: "3px", borderRadius: "default" }}
-        >
-          {count > 100 ? "100+" : count}
-        </Text>
-      ) : null}
+      {children}
     </Flex>
   );
 }

@@ -26,12 +26,12 @@ const defaultVariant: ThemeUIStyleObject = {
   fontFamily: "body",
   fontWeight: "body",
   fontSize: "input",
-  color: "text",
+  color: "paragraph",
   ":focus": {
-    outline: "2px solid var(--primary)"
+    outline: "2px solid var(--accent)"
   },
   ":hover:not(:focus)": {
-    outline: "1.5px solid var(--dimPrimary)"
+    outline: "1.5px solid var(--textSelection)"
   }
 };
 

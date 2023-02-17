@@ -18,14 +18,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 import { Table as TiptapTable, TableOptions } from "@tiptap/extension-table";
-import { columnResizing, tableEditing } from "@_ueberdosis/prosemirror-tables";
+import { columnResizing, tableEditing } from "@tiptap/pm/tables";
 import { Editor } from "../../types";
 import { TableNodeView } from "./component";
 import { Plugin } from "prosemirror-state";
 import { NodeView } from "prosemirror-view";
 
 // TODO: send PR
-declare module "@_ueberdosis/prosemirror-tables" {
+declare module "@tiptap/pm/tables" {
   export function columnResizing(props: {
     handleWidth?: number;
     cellMinWidth?: number;

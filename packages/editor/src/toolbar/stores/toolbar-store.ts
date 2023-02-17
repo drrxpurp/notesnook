@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 import { Theme } from "@notesnook/theme";
-import create from "zustand";
+import { create } from "zustand";
 import { DownloadOptions } from "../../utils/downloader";
 
 export type ToolbarLocation = "top" | "bottom";
@@ -49,33 +49,19 @@ export const useToolbarStore = create<ToolbarState>((set, get) => ({
   isMobile: false,
   isKeyboardOpen: true,
   openedPopups: {},
-  setDownloadOptions: (options) =>
-    set((state) => {
-      state.downloadOptions = options;
-    }),
-  setIsKeyboardOpen: (isKeyboardOpen) =>
-    set((state) => {
-      state.isKeyboardOpen = isKeyboardOpen;
-    }),
-  setIsMobile: (isMobile) =>
-    set((state) => {
-      state.isMobile = isMobile;
-    }),
-  setTheme: (theme) =>
-    set((state) => {
-      state.theme = theme;
-    }),
+  setDownloadOptions: (options) => set({ downloadOptions: options }),
+  setIsKeyboardOpen: (isKeyboardOpen) => set({ isKeyboardOpen }),
+  setIsMobile: (isMobile) => set({ isMobile }),
+  setTheme: (theme) => set({ theme }),
   toolbarLocation: "top",
-  setToolbarLocation: (location) =>
-    set((state) => {
-      state.toolbarLocation = location;
-    }),
+  setToolbarLocation: (location) => set({ toolbarLocation: location }),
   closePopup: (id) =>
     set((state) => {
       state.openedPopups = {
         ...state.openedPopups,
         [id]: false
       };
+      return state;
     }),
   isPopupOpen: (id) => !!get().openedPopups[id],
   openPopup: (ref) =>
@@ -84,6 +70,7 @@ export const useToolbarStore = create<ToolbarState>((set, get) => ({
         ...state.openedPopups,
         [ref.id]: ref
       };
+      return state;
     }),
   closePopupGroup: (group, excluded) =>
     set((state) => {
@@ -93,12 +80,14 @@ export const useToolbarStore = create<ToolbarState>((set, get) => ({
           state.openedPopups[key] = false;
         }
       }
+      return state;
     }),
   closeAllPopups: () =>
     set((state) => {
       for (const key in state.openedPopups) {
         state.openedPopups[key] = false;
       }
+      return state;
     })
 }));
 

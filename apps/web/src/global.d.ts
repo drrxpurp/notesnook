@@ -32,6 +32,9 @@ type DesktopIntegrationSettings = {
 };
 
 declare interface Window {
+  currentViewType: string;
+  currentViewKey: string;
+
   config: {
     static spellChecker(): Promise<SpellCheckerOptions>;
     static desktopIntegration(): Promise<DesktopIntegrationSettings>;

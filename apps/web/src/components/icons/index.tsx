@@ -192,16 +192,19 @@ import {
   mdiBookMultipleOutline
 } from "@mdi/js";
 import { useTheme } from "@emotion/react";
-import { AnimatedFlex } from "../animated";
 import { Theme } from "@notesnook/theme";
-import { FlexProps } from "@theme-ui/components";
+import { Flex, FlexProps } from "@theme-ui/components";
 import { MotionProps } from "framer-motion";
+import {
+  isThemeColor,
+  SchemeColors
+} from "@notesnook/theme/dist/theme/colorscheme";
 
 type MDIIconWrapperProps = {
   title?: string;
   path: string;
   size?: keyof Theme["iconSizes"] | number;
-  color?: keyof Theme["colors"];
+  color?: SchemeColors;
   rotate?: boolean;
 };
 function MDIIconWrapper({
@@ -213,9 +216,10 @@ function MDIIconWrapper({
 }: MDIIconWrapperProps) {
   const theme = useTheme() as Theme;
 
-  const themedColor: string = theme?.colors
-    ? (theme.colors[color] as string)
-    : color;
+  const themedColor: string =
+    theme?.colors && isThemeColor(color, theme.colors)
+      ? theme.colors[color]
+      : color;
 
   return (
     <MDIIcon
@@ -240,7 +244,7 @@ function MDIIconWrapper({
 type IconProps = FlexProps &
   MotionProps &
   Omit<MDIIconWrapperProps, "path"> & {
-    hoverColor?: keyof Theme["colors"];
+    hoverColor?: SchemeColors;
   };
 
 export type Icon = {
@@ -253,10 +257,8 @@ function createIcon(path: string, rotate = false) {
     const [isHovering, setIsHovering] = useState(false);
     const { sx, rotate: _rotate = rotate, size, ...restProps } = props;
     return (
-      <AnimatedFlex
+      <Flex
         {...restProps}
-        whileHover={{ scale: 1.1 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
         sx={{
           ...sx,
           justifyContent: "center",
@@ -275,7 +277,7 @@ function createIcon(path: string, rotate = false) {
             props.hoverColor && isHovering ? props.hoverColor : props.color
           }
         />
-      </AnimatedFlex>
+      </Flex>
     );
   };
   NNIcon.isReactComponent = true;

@@ -53,7 +53,7 @@ function _SplitButton(props: PropsWithChildren<SplitButtonProps>) {
             p: 0,
             m: 0,
             px: "3px",
-            bg: "bgSecondary",
+            bg: "background",
             ":hover": { bg: "hover" },
             ":last-of-type": {
               mr: 0
@@ -65,7 +65,6 @@ function _SplitButton(props: PropsWithChildren<SplitButtonProps>) {
             path={
               toolbarLocation === "bottom" ? Icons.chevronUp : Icons.chevronDown
             }
-            color="text"
             size={"small"}
             sx={{ flexShrink: 0 }}
           />
