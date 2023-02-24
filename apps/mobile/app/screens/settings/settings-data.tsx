@@ -516,6 +516,14 @@ export const settingsGroups: SettingSection[] = [
             name: "Homepage",
             description: "Default screen to open on app startup",
             component: "homeselector"
+          },
+          {
+            id: "clear-trash-interval",
+            type: "component",
+            name: "Clear trash interval",
+            description:
+              "Select the duration after which trash items will be cleared",
+            component: "trash-interval-selector"
           }
         ]
       }
