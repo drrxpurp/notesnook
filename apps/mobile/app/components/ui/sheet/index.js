@@ -78,7 +78,7 @@ const SheetWrapper = ({
   };
 
   return (
-    <ScopedThemeProvider value="popup">
+    <ScopedThemeProvider value="sheet">
       <ActionSheet
         ref={fwdRef}
         testIDs={{
