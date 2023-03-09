@@ -24,15 +24,18 @@ import { saveAs } from "file-saver";
 import { showToast } from "../utils/toast";
 import { sanitizeFilename } from "../utils/filename";
 
+
 export async function exportToPDF(
   title: string,
   content: string
 ): Promise<boolean> {
   if (!content) return false;
   const { default: printjs } = await import("print-js");
+  const renderedContent = renderMath(content);
+
   return new Promise((resolve) => {
     printjs({
-      printable: content,
+      printable: renderedContent,
       type: "raw-html",
       documentTitle: title,
       header: '<h3 class="custom-h3">My custom header</h3>',
@@ -93,4 +96,29 @@ export async function exportNotes(
       return true;
     }
   });
+}
+
+function renderMath(content: string) {
+  const katex = require("katex");
+  require("katex/contrib/mhchem");
+
+  const div = document.createElement("div");
+  div.innerHTML = content;
+
+  const mathBlocks = div.querySelectorAll(".math-block.math-node");
+  const mathInlines = div.querySelectorAll(".math-inline.math-node");
+
+  for (const mathBlock of mathBlocks) {
+    const text = mathBlock.textContent;
+    mathBlock.innerHTML = katex.renderToString(text, {
+      displayMode: true,
+      output: "mathml"
+    });
+  }
+  for (const mathInline of mathInlines) {
+    const text = mathInline.textContent;
+    mathInline.innerHTML = katex.renderToString(text, { output: "mathml" });
+  }
+
+  return div.innerHTML;
 }
